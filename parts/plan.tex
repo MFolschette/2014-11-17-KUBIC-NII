@@ -1,0 +1,141 @@
+% Plan
+
+% \begin{frame}[c]
+%   \frametitle{Sémantiques des Frappes de Processus}
+% 
+% \centering
+% \includegraphics[height=.9\textheight]{figs/PH1.png}
+% 
+% \end{frame}
+
+
+\newcommand{\planPHstandard}[1][]{%
+  \draw[very thick, draw=gray, fill=gray!10, #1] (0,-2.5) ellipse (1.7 and 1)
+    node[text width=4cm, align=center] {Frappes de Processus\\standards};
+}
+
+\newcommand{\planPHp}[1][]{%
+  \draw[very thick, draw=blue, fill=blue!10, #1] (0,2) ellipse (2.5 and 1.5)
+    node[text width=4cm, align=center, yshift=.5cm] {Frappes de Processus\\avec classes de priorités};
+}
+
+\newcommand{\planPHcanonique}[1][]{%
+  \draw[very thick, draw=red, fill=red!10, #1] (0,1.3) ellipse (1.8 and .5)
+    node[text width=4cm, align=center, yshift=-.1cm] {Frappes de Processus\\canoniques};
+}
+
+\newcommand{\planPHan}[1][]{%
+  \draw[very thick, draw=darkgreen, fill=darkgreen!10, #1] (-3.5,0) ellipse (1.7 and 1)
+    node[text width=4cm, align=center] {Frappes de Processus\\avec arcs neutralisants};
+}
+
+\newcommand{\planPHmult}[1][]{%
+  \draw[very thick, draw=violet, fill=violet!10, #1] (3.5,0) ellipse (1.7 and 1)
+    node[text width=4cm, align=center] {Frappes de Processus\\avec actions plurielles};
+}
+
+\newcommand{\planPHstandardligne}{
+  \draw[very thick, draw=gray, bend left=30] (-5,-2.7) edge (5,-2.7);
+}
+
+\begin{frame}[c]
+  \frametitle{Sémantiques des Frappes de Processus}
+
+\begin{tikzpicture}
+  \path[use as bounding box] (-5.2,-4) rectangle (5.2,3.5);
+  \planPHstandard
+  \planPHp
+  \planPHan
+  \planPHmult[stillhidden]
+  \planPHcanonique[stillhidden]
+\end{tikzpicture}
+
+\end{frame}
+
+
+
+\setbeamercovered{transparent}
+
+\begin{frame}[c]
+  \frametitle{Sémantiques des Frappes de Processus}
+
+\begin{tikzpicture}
+  \path[use as bounding box] (-5.2,-4) rectangle (5.2,3.5);
+  
+  \planPHp
+  \planPHstandard
+  \planPHan
+  \planPHmult
+  \planPHcanonique
+  
+  \uncover<2->{
+    \path[draw, very thick, bend right=10] (-0.2,2.2) edge[->] (-.2,1.6);
+    \path[draw, very thick, bend left=10] (0.2,2.2) edge[<-] (.2,1.6);
+  }
+  
+  \uncover<3->{
+    \path[draw, very thick, bend right=10] (-2,1.8) edge[->] (-3,.5);
+    \path[draw, very thick, bend right=10] (-2,0) edge[->] (-1,1.1);
+  }
+  
+  \uncover<4->{
+    \path[draw, very thick, bend left=10] (2,1.8) edge[<-] (3,.5);
+    \path[draw, very thick, bend left=10] (2,0) edge[<-] (1,1.1);
+  }
+  
+  \uncover<5->{
+    \planPHstandardligne
+    \path[draw, very thick, bend left=10] (0,-1.9) edge[->] (0,-.8);
+  }
+\end{tikzpicture}
+
+\end{frame}
+
+
+
+\begin{frame}[c]
+  \frametitle{Sémantiques des Frappes de Processus}
+
+\centering
+\scalebox{.8}{
+\begin{tikzpicture}
+  \path[use as bounding box] (-6,-4) rectangle (7,3.5);
+  
+  \planPHp
+  \planPHstandard
+  \planPHan
+  \planPHmult
+  \planPHcanonique
+  \planPHstandardligne
+  
+  \uncover<2->{
+    \draw[thick, draw=black, fill=gray!10] (-4.5,2.5) ellipse (1.4 and .6)
+      node[text width=4cm, align=center] {\small Modèle de Thomas\\Réseaux discrets};
+    \path[draw, very thick, bend left=5] (-3.3,2.5) edge[->] (-1.5,1.4);
+    \path[draw, very thick, bend right=5] (-3.4,2.3) edge[<-] (-1.6,1.2);
+  }
+  
+  \uncover<3->{
+    \draw[thick, draw=black, fill=gray!10] (6,2) ellipse (1.2 and .5)
+      node[text width=4cm, align=center] {\small Automates\\synchronisés};
+    \path[draw, very thick, bend left=5] (6,1.6) edge[->] (4.7,0.4);
+    \path[draw, very thick, bend right=5] (5.7,1.7) edge[<-] (4.4,0.5);
+  }
+  
+  \uncover<4->{
+    \draw[thick, draw=black, fill=gray!10] (4.2,3.2) ellipse (1.7 and .5)
+      node[text width=4cm, align=center] {\small Sémantique booléenne\\de Biocham};
+    \path[draw, very thick, bend right=5] (4.2,2.8) edge[->] (3.7,0.6);
+  }
+  
+  \uncover<5->{
+    \draw[thick, draw=black, fill=gray!10] (6,-1.7) ellipse (1.7 and .5)
+      node[text width=4cm, align=center] {\small Réseaux de Petri bornés\\avec arcs inhibiteurs};
+    \path[draw, very thick, bend right=5] (5.7,-1.4) edge[<-] (4.2,-.6);
+  }
+\end{tikzpicture}
+}
+
+\setbeamercovered{invisible}
+
+\end{frame}

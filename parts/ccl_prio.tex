@@ -1,0 +1,37 @@
+% Conclusion sur les priorités
+
+\begin{frame}[c]
+  \frametitle{Pros and Cons of Classes of Priorities}
+
+Pros:
+\begin{itemize}
+  \item Better expressivity (same as Boolean Networks!)
+  \item Efficient static analysis
+\end{itemize}
+
+\begin{tabular}{r||c|c|c|c||c|c|}
+\tval{Model} & Sorts & Procs & Actions & States & libddd$^1$ & \Pint \\\hline
+\tval{\ex{tcrsig94}} & 133 & 448 & 1124 & $2^{194}$ & $\infty$ & \tval{0.008s -- 0.060s}
+\end{tabular}
+
+\medskip
+\quad$^1$ LIP6/Move
+
+\smallskip
+\quad\tval{\ex{tcrsig94}}: \tcite{T-Cell Receptor Signaling, by Julio Saez-Rodriguez \textit{et al.}}\\
+\qquad(Here with prioritized cooperative sorts)
+
+\bigskip
+Cons:
+\begin{itemize}
+  \item No accumulation phenomenons
+    \begin{itemize}
+      \item[] Contrary to stochastic simulation
+    \end{itemize}
+  \item Translation to canonical form is exponential
+    \begin{itemize}
+      \item[\f] For each action of priority $n$, exponential in the number of actions of priority $\segm{2}{n-1}$
+    \end{itemize}
+\end{itemize}
+
+\end{frame}

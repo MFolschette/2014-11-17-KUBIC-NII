@@ -1,0 +1,49 @@
+% Coopérations
+
+\begin{frame}
+  \frametitle{Cooperations}
+  \framesubtitle{\tcite{\cpmrtcsb}}
+
+\begin{center}\scalebox{\scaleex}{
+\begin{tikzpicture}
+  \exphcoop
+  
+  \TState{9}{a_1,b_1}
+  \TState{10}{a_1,b_1,ab_0}
+  \TState{11}{a_1,b_1,ab_1}
+  \TState{12}{a_1,b_1,ab_3}
+  
+  \node at (a_1.center) {\textasteriskcentered};
+  \node at (b_1.center) {\textasteriskcentered};
+  \node<5-> at (ab_3.center) {\textasteriskcentered};
+  
+  \only<9>{
+    \node[hl process] at (ab_0.center) {};
+    \node[hl process] at (ab_1.center) {};
+    \node[hl process] at (ab_2.center) {};
+    \node[current process] at (ab_3.center) {};
+  }
+  
+  \only<10>{
+    \THit{b_1}{hl}{ab_0}{.210}{ab_1}
+    \path[bounce,bend left,hl] \TBounce{ab_0}{}{ab_1}{.240} ;
+  }
+  
+  \only<11>{
+    \THit{a_1}{hl}{ab_1}{.160}{ab_3}
+    \path[bounce,bend left,hl] \TBounce{ab_1}{}{ab_3}{.south west} ;
+  }
+\end{tikzpicture}
+}\end{center}
+
+\medskip
+\begin{liste}
+  \item \tval{Cooperation} between \ex{$a_1$} and \ex{$b_1$}: \qex{$\PHfrappe{\underline{a_1 \wedge b_1}}{z_0}{z_1}$}
+\pause[5]
+  \item Solution: a \tval{cooperative sort} \qex{$ab$} \quad to express \qex{$\underline{a_1 \wedge b_1}$}
+\pause[9]
+  \item Each configuration is represented by one process \qex{$\underline{a_1 \wedge b_1} \Rightarrow ab_{11}$}
+%\pause[15]
+%  \item Advantage: regular sort; drawbacks: complexity, temporal shift
+\end{liste}
+\end{frame}

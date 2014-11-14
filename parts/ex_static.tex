@@ -1,0 +1,59 @@
+% Exemples de structures abstraites (graphes de causalité locale)
+
+\begin{frame}
+  \frametitle{Under-approximation}
+
+\def \tu {2}
+\def \tub {3}
+\def \tuf {4}
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+
+\begin{center}
+\scalebox{0.55}{
+\begin{tikzpicture}
+  \exatt
+  \TState{-\tu}{a_1,b_1,c_1,d_0}
+  \TState{\tub-}{a_0,b_1,c_0,d_0}
+  \node[objective] (d_2) at (d_2.center) {?};
+\end{tikzpicture}
+}
+\end{center}
+
+\end{column}
+\begin{column}{0.52\textwidth}
+
+\vspace{1.5em}
+\tval{Sufficient condition}:
+
+\smallskip
+\begin{itemize}
+  \item no cycle
+  \item \only<-\tu>{each objective has a solution} \only<\tub->{\sout{each objective has a solution}}
+\end{itemize}
+\begin{center}
+  \only<\tu>{\Large\textcolor{darkgreen}{$R$ is \textbf{true}}} \only<\tuf>{\Large\textcolor{darkyellow}{\textbf{Inconclusive}}}
+\end{center}
+
+\end{column}
+\end{columns}
+
+\begin{center}%
+%\vspace*{1cm}%
+\scalebox{\scaleex}{%
+\only<-\tu>{%
+\scalebox{\scaleex}{%
+\begin{tikzpicture}[aS]
+  \path[use as bounding box] (.7,1) rectangle (5.8,2.5);
+
+  \glclegend{}{$d_2$}{$\PHobj{d_0}{d_2}$}
+\end{tikzpicture}
+}
+  \sauyes
+}
+\only<\tub->{
+  \sauinconc
+}}
+\end{center}
+\end{frame}
