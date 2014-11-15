@@ -863,3 +863,31 @@
   \path (1.8, 0.5) edge[\superprio,coopupdate] (3.2, 2);
   \path (0.8, 4.5) edge[\superprio,coopupdate] (3.2, 3);
 }
+
+
+
+% Incoherent feedforward loop
+\newcommand{\exffl}{%
+  \node[inner sep=0] (A) at (2,0.75) {$A$};
+  \node[inner sep=0, below right of=A] (B) {$B$};
+  \node[inner sep=0, below left of=A] (C) {$C$};
+  \path
+    (A) edge[act] (B)
+    (A) edge[act] (C)
+    (B) edge[inh] (C);
+}
+
+
+
+% (Partial) incoherent feedforward loop in PH
+\newcommand{\exfflph}{
+  \TSort{(.5,3)}{a}{2}{t}
+  \TSetTick{b}{0}{1} \TSetTick{b}{1}{0} % Inversion des processus de b
+  \TSort{(4,1)}{b}{2}{r}
+  \TSort{(0,0)}{c}{3}{b}
+  
+  % Actions
+  \TAction{a_1}{c_1.north east}{c_2}{}{left}
+  \TAction{a_1}{b_1.north west}{b_0.north}{}{right}
+  \TActionPlur{a_1, b_0}{c_2.north east}{c_0}{}{3,1.5}{right}
+}

@@ -124,11 +124,11 @@
 % #5 = style bond
 \newcommand{\TAction}[5]{
   \THit{#1}{#4}{#2}{}{#3}
-  \path[bounce, bend #5=50] \TBounce{#2}{}{#3}{};
+  \path[bounce, #4, bend #5=50] \TBounce{#2}{}{#3}{};
 }
 
 \newcommand{\TCoopHit}[6]{
-  \node[#2, apdot] at (#3) {};
+  \node[#2, apdot, #2] at (#3) {};
   \foreach \proc in {#1} {
     \draw[#2,-] (#3) edge (\proc);
   }
@@ -145,5 +145,5 @@
 % #6 = direction bond
 \newcommand{\TActionPlur}[6]{
   \TCoopHit{#1}{#4}{#5}{#2}{}{#3}
-  \path[bounce, bend #6=50] \TBounce{#2}{}{#3}{};
+  \path[bounce, #4, bend #6=50] \TBounce{#2}{}{#3}{};
 }

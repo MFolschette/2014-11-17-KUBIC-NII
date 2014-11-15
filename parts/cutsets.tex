@@ -1,0 +1,48 @@
+% Cut sets
+
+\begin{frame}
+\frametitle{Cut sets}
+\framesubtitle{\tcite{\citecutsets}}
+
+
+\tval{Cut set} = set of nodes whose knockout is sufficient to turn off some outputs
+
+\medskip
+
+\begin{center}
+\scalebox{1}{
+\begin{tikzpicture}[adn]
+  %\path[use as bounding box] (-0.7,-0.4) rectangle (2.5,2);
+  \node[active] (a) at (-1,0) {a}; \node[active] (b) at (0,0) {b}; \node[active] (c) at (1,0) {c};
+  \node[active] (d) at (-.5,-1) {}; \node[active] (e) at (.5,-1) {}; \node[active] (f) at (1.5,-1) {};
+  \node[active] (g) at (-1,-2) {}; \node<1>[active] (h) at (0,-2) {};
+  \node[active] (i) at (-1.5,-3) {}; \node<-2>[active] (j) at (-.5,-3) {}; \node<-2>[active] (k) at (.5,-3) {};
+  \node<-2>[badgene] (x) at (-1,-4) {x}; \node<-2>[badgene] (y) at (0,-4) {y}; \node<-2>[badgene] (z) at (1,-4) {z};
+  
+  \node<2->[inactive] at (h) {}; \node<2->[inactive] at (g) {};
+  \node<3->[inactive] at (j) {}; \node<3->[inactive] at (k) {}; \node<3->[inactive] at (i) {};
+  \node<3->[inactivebadgene] at (x) {x}; \node<3->[inactivebadgene] at (y) {y}; \node<3->[inactivebadgene] at (z) {z};
+  
+%  \uncover<2->{\path[draw=cyan, fill=gray!50, -, thick] (.4,-2) -- (1.5,-2) -- (1.2,-1.8) -- (2.5,-1.8) -- (2.9,-2) -- (1.7,-2) -- (2,-2.2) -- (.4,-2);}
+%   \uncover<2->{\path[shading=1, left color=notsodarkred, right color=red!30]
+%     (.4,-2) -- (1.5,-2.1) -- (1.2,-1.9) -- (2.5,-2.05) -- (2.8,-2.25) -- (1.7,-2.1) -- (2,-2.3) -- (.4,-2);}
+
+  \path
+    (a) edge[act] (d) (b) edge[act] (d) (b) edge[inh] (e) (c) edge[act] (e) (c) edge[act] (f)
+    (d) edge[act, bend left] (g) (d) edge[inh] (h) (e) edge[act] (h)
+    (g) edge[act, bend left] (i) (g) edge[inh, bend left] (d) (g) edge[act] (j)
+    (h) edge[act] (k) (h) edge[act, bend left] (j)
+    (i) edge[act, bend left] (g) (j) edge[act] (x) (j) edge[act] (y) (k) edge[act] (z) (j) edge[inh, bend left] (h);
+  
+  \eclair{h.east}{.7}{0}
+  \eclair{g.west}{.7}{180}
+\end{tikzpicture}}
+\end{center}
+
+\medskip
+
+\begin{itemize}
+  \item “Absolute” vision of possible perturbations
+  \item Need for an intermediate point of view \f Finer analysis
+\end{itemize}
+\end{frame}
