@@ -130,10 +130,144 @@
 \begin{tikzpicture}[aS,node distance=1.1cm]
   \path[use as bounding box] (-1,-3.1) rectangle (7,1.2);
   
+  % c_2
+  \node<2->[Aproc,fill=yellow!50,yshift=20] (c2) {$c_2$};
+  \node<3->[Aobj,right of=c2] (c12) {$\PHobj{c_1}{c_2}$};
+  \node<4->[Asol,right of=c12] (c12s) {};
+  
+  \node<5->[Aproc,right of=c12s] (ba1) {$a_1$};
+  \node<6->[Aobj,right of=ba1] (ba11) {$\PHobj{a_1}{a_1}$};
+  \node<6->[Asol,right of=ba11] (ba11s) {};
+  
+  \path<3-> (c2) edge (c12);
+  \path<4-> (c12) edge (c12s);
+  \path<5-> (c12s) edge (ba1);
+  \path<6->
+    (ba1) edge (ba11)
+    (ba11) edge (ba11s);
+  
+  \node<8->[darkgreen,draw=none,above of=c2,node distance=20] {\Large\textbf{OK}};
+  
   % c_0
-  \node<1->[Aproc, fill=yellow!50] (c0) {$c_0$};
-  \node<2->[Aobj,right of=c0] (c10) {$\PHobj{c_1}{c_0}$};
-  \node<3->[Asol,right of=c10] (c10s) {};
+  \node<9->[Aproc,fill=yellow!50,below of=c2,node distance=60] (c0) {$c_0$};
+  \node<10->[Aobj,right of=c0] (c10) {$\PHobj{c_1}{c_0}$};
+  \node<11->[Asol,right of=c10] (c10s) {};
+  
+  \node<12->[Aproc,above right of=c10s] (a1) {$a_1$};
+  \node<13->[Aobj,right of=a1] (a11) {$\PHobj{a_1}{a_1}$};
+  \node<13->[Asol,right of=a11] (a11s) {};
+  
+  \node<12->[Aproc,below right of=c10s] (b1) {$b_1$};
+  \node<14->[Aobj,right of=b1] (b01) {$\PHobj{b_0}{b_1}$};
+  \node<14->[Asol,right of=b01] (b01s) {};
+  
+  \path<10-> (c0) edge (c10);
+  \path<11-> (c10) edge (c10s);
+  
+  \path<12->
+    (c10s) edge (a1)
+    (c10s) edge (b1)
+    (a1) edge[double,bend left=10,-] (b1);
+  
+  \path<13->
+    (a1) edge (a11)
+    (a11) edge (a11s);
+  
+  \path<14->
+    (b1) edge (b01)
+    (b01) edge (b01s)
+    (b01s) edge (a1);
+  
+  \node<15->[darkgreen,draw=none,above of=c0,node distance=20] {\Large\textbf{OK}};
+\end{tikzpicture}}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Detailed application of the Static Analysis}
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+
+\begin{center}
+\scalebox{0.80}{
+\begin{tikzpicture}
+  \TSort{(.5,3)}{a}{2}{t}
+  \TSetTick{b}{0}{1} \TSetTick{b}{1}{0} % Inversion des processus de b
+  \TSort{(4,1)}{b}{2}{r}
+  \TSort{(0,0)}{c}{3}{b}
+  
+  % Actions
+  \TAction{a_1}{c_1.north east}{c_2}{}{left}
+  \only<1>{\TAction{a_1}{b_1.north west}{b_0.north}{}{right}}
+  \only<2>{\TAction{a_1}{b_1.north west}{b_0.north}{notsodarkred, very thick}{right}}
+  \TActionPlur{a_1, b_0}{c_2.north east}{c_0}{}{3,1.5}{right}
+  
+  \TState{1-}{a_1, b_1, c_1}
+  \node[objective, fill=red] at (b_0.center) {};
+  \node[objective] at (c_0.center) {\Large $\ast$};
+\end{tikzpicture}
+}
+\end{center}
+
+\end{column}
+\begin{column}{0.52\textwidth}
+
+\vspace{.5em}
+\tval{Sufficient condition}:
+
+\smallskip
+\begin{itemize}
+  \item no cycle
+  \item each objective has a solution
+  \item no contradiction between\\synchronous requirements
+\end{itemize}
+
+\bigskip
+
+\tval{Graph of local causality:}
+
+\end{column}
+\end{columns}
+
+\begin{center}%
+%\vspace*{1cm}%
+\scalebox{\scaleex}{%
+\begin{tikzpicture}[aS]
+  \path[use as bounding box] (.7,1) rectangle (5.8,2.5);
+
+  \glclegend{}{$c_0$}{$\PHobj{c_1}{c_0}$}
+\end{tikzpicture}
+
+\begin{tikzpicture}[aS,node distance=1.1cm]
+  \path[use as bounding box] (-1,-3.1) rectangle (7,1.2);
+  
+  \only<3->{
+    % c_2
+    \node[Aproc,fill=yellow!50,yshift=20] (c2) {$c_2$};
+    \node[Aobj,right of=c2] (c12) {$\PHobj{c_1}{c_2}$};
+    \node[Asol,right of=c12] (c12s) {};
+    
+    \node[Aproc,right of=c12s] (ba1) {$a_1$};
+    \node[Aobj,right of=ba1] (ba11) {$\PHobj{a_1}{a_1}$};
+    \node[Asol,right of=ba11] (ba11s) {};
+    
+    \path (c2) edge (c12);
+    \path (c12) edge (c12s);
+    \path (c12s) edge (ba1);
+    \path
+      (ba1) edge (ba11)
+      (ba11) edge (ba11s);
+    
+    \node[darkgreen,draw=none,above of=c2,node distance=20] {\Large\textbf{OK}};
+  }
+  
+  % c_0
+  \node<4->[Aproc,fill=yellow!50,below of=c2,node distance=60] (c0) {$c_0$};
+  \node<4->[Aobj,right of=c0] (c10) {$\PHobj{c_1}{c_0}$};
+  \node<4->[Asol,right of=c10] (c10s) {};
   
   \node<4->[Aproc,above right of=c10s] (a1) {$a_1$};
   \node<5->[Aobj,right of=a1] (a11) {$\PHobj{a_1}{a_1}$};
@@ -141,44 +275,23 @@
   
   \node<4->[Aproc,below right of=c10s] (b1) {$b_1$};
   \node<6->[Aobj,right of=b1] (b01) {$\PHobj{b_0}{b_1}$};
-  \node<6->[Asol,right of=b01] (b01s) {};
-  
-  \path<2-> (c0) edge (c10);
-  \path<3-> (c10) edge (c10s);
+  \node<6->[right of=b01,notsodarkred] {\Large$\bot$};
   
   \path<4->
+    (c0) edge (c10)
+    (c10) edge (c10s)
+    (a1) edge[double,bend left=10,-] (b1)
     (c10s) edge (a1)
-    (c10s) edge (b1)
-    (a1) edge[double,bend left=10,-] (b1);
+    (c10s) edge (b1);
   
   \path<5->
     (a1) edge (a11)
     (a11) edge (a11s);
   
   \path<6->
-    (b1) edge (b01)
-    (b01) edge (b01s)
-    (b01s) edge (a1);
+    (b1) edge (b01);
   
-  \node<7->[darkgreen,draw=none,above of=c_0,node distance=20] {\Large\textbf{OK}};
-  
-  % c_2
-  \node<8->[Aproc,below of=c0,node distance=60,fill=yellow!50] (c2) {$c_2$};
-  \node<9->[Aobj,right of=c2] (c12) {$\PHobj{c_1}{c_2}$};
-  \node<10->[Asol,right of=c12] (c12s) {};
-  
-  \node<11->[Aproc,right of=c12s] (ba1) {$a_1$};
-  \node<12->[Aobj,right of=ba1] (ba11) {$\PHobj{a_1}{a_1}$};
-  \node<12->[Asol,right of=ba11] (ba11s) {};
-  
-  \path<9-> (c2) edge (c12);
-  \path<10-> (c12) edge (c12s);
-  \path<11-> (c12s) edge (ba1);
-  \path<12->
-    (ba1) edge (ba11)
-    (ba11) edge (ba11s);
-  
-  \node<13->[darkgreen,draw=none,above of=c2,node distance=20] {\Large\textbf{OK}};
+  \node<7->[notsodarkred,draw=none,above of=c0,node distance=20] {\Large\textbf{KO}};
 \end{tikzpicture}}
 \end{center}
 \end{frame}
