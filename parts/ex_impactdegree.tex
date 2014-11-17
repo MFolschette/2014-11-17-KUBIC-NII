@@ -87,7 +87,8 @@
 \begin{tikzpicture}
   \exfflph
   \TState{1-}{a_1, b_1, c_1}
-  \node[objective] at (c_0.center) {\Large $\ast$};
+  \node<1-8>[objective] at (c_2.center) {\Large $\ast$};
+  \node<9->[objective] at (c_0.center) {\Large $\ast$};
 \end{tikzpicture}
 }
 \end{center}
@@ -207,7 +208,8 @@
   
   \TState{1-}{a_1, b_1, c_1}
   \node[objective, fill=red] at (b_0.center) {};
-  \node[objective] at (c_0.center) {\Large $\ast$};
+  \node<3>[objective] at (c_2.center) {\Large $\ast$};
+  \node<4->[objective] at (c_0.center) {\Large $\ast$};
 \end{tikzpicture}
 }
 \end{center}

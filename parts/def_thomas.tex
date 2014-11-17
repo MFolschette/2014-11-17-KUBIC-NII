@@ -61,9 +61,9 @@
   \node[inner sep=0] (a) at (0,1.5) {a};
   \node[inner sep=0] (b) at (0,0) {b};
   \path<2->
-    node[alabel, above=-1em of a] {$\segm{0}{1}$}
-    node[alabel, below=-1em of b] {$\segm{0}{1}$}
-    node[alabel, below=-1em of z] {$\segm{0}{2}$};
+    node[alabel, above=-3pt of a] {$\segm{0}{1}$}
+    node[alabel, below=-3pt of b] {$\segm{0}{1}$}
+    node[alabel, below=-3pt of z] {$\segm{0}{2}$};
   \path<3->
     (a) edge[bend right=15] (b)
     (b) edge[bend right=15] (a)
@@ -71,11 +71,11 @@
     (a) edge (z)
     (b) edge (z);
   \path<4->
-    (a) edge[draw=none,bend right=15] node[alabel,left=-1pt] {$-1$} (b)
-    (b) edge[draw=none,bend right=15] node[alabel,right=-3pt] {$-1$} (a)
-    (b) edge[draw=none,loop left] node[alabel,left=-2pt] {$+1$} (b)
-    (a) edge[draw=none] node[alabel,above=-2pt] {$+1$} (z)
-    (b) edge[draw=none] node[alabel,below=-2pt] {$+1$} (z);
+    (a) edge[draw=none,bend right=15] node[alabel,left=+1pt] {$-1$} (b)
+    (b) edge[draw=none,bend right=15] node[alabel,right=+1pt] {$-1$} (a)
+    (b) edge[draw=none,loop left] node[alabel,left=+2pt] {$+1$} (b)
+    (a) edge[draw=none] node[alabel,above=+1pt] {$+1$} (z)
+    (b) edge[draw=none] node[alabel,below=+1pt] {$+1$} (z);
 \end{tikzpicture}
 \end{center}
 

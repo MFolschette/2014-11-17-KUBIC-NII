@@ -41,8 +41,8 @@
   \node[inner sep=0] (a) at (0,0) {a};
   \node[inner sep=0] (b) at (2,0) {b};
   
-  \path node[elabel, below=-1em of b] {$\segm{0}{1}$};
-  \path<2-> node[elabel, below=-1em of a] {$\segm{0}{2}$};
+  \path node[elabel, below=-3pt of b] {$\segm{0}{1}$};
+  \path<2-> node[elabel, below=-3pt of a] {$\segm{0}{2}$};
   
   \path<1> (b) edge[very thick,bend right=15] (a);
   \path<2-> (b) edge[bend right=15] (a);
